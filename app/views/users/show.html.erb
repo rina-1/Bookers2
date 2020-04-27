@@ -1,47 +1,37 @@
 <div class="container">
+    <%= flash[:notice] %>
   <div class="row">
     <div class="col-xs-3">
-    <% if flash[:notice] %>
-    <%= flash[:notice] %>
-    <% end %>
 
-    <div class="profile-container">
-    <h2>User info</h2>
-    <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format:'jpeg', class:"img-circle pull-left profile-img", fallback:"no_image.jpeg" %>
-    <h2>name</h2>
-    <%= @user.name %>
-    <h2>introduction</h2>
-    <%= @user.introduction %>
-     </div>
 
-    <div class="user_edit">
-           <%= link_to edit_user_path(@user) do %>
-            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-           <% end %>
+<%= render partial: 'users/list', locals: { book:@book,user:@user } %>
     </div>
-<%= render partial: 'users/list', locals: { book:@book } %>
-    </div>
+
     <div class="col-xs-9">
-    <h1>Books</h1>
+    <h2>Books</h2>
     <table class="table table-striped">
-	  <tr>
-		<th>     </th>
+	 <thead>
+      <tr>
+		<th></th>
 		<th>Title</th>
 		<th>Opinion</th>
+        <th colspan="3"></th>
 	  </tr>
+     </thead>
+ <tbody>
 	  <% @user.books.each do |book| %>
 	  <tr>
 		<td>
             <%= link_to users_path(book) do %>
-            <%= attachment_image_tag @user, :profile_image,:fill,60,60,format:'jpeg',class:"img-circle pull-left profile-img",fallback:"no_image.jpeg" %>
+            <%= attachment_image_tag book.user, :profile_image,format:"jpeg",fallback:"no_image.jpg",size:"40x40" %>
             <% end %>
         </td>
 		<td><%= link_to book.title,book_path(book) %></td>
 		<td><%= book.body %></td>
 	  </tr>
 	  <% end %>
+    </tbody>
     </table>
     </div>
   </div>
 </div>
-　

@@ -1,4 +1,6 @@
-<h1>User info</h1>
+<div class="container">
+ <div class="col-md-7 col-md-offset-1">
+ 	<h1>User info</h1>
 <% if @user.errors.any? %>
   <h2><%= @user.errors.count %>件のerrorが発生しました。</h2>
   <ul>
@@ -19,3 +21,5 @@
 <%= f.submit "Update User" %>
 <% end %>
 
+</div>
+</div>
